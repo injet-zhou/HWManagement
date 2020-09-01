@@ -173,6 +173,10 @@ namespace HW.Entities
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Avatar)
+                    .HasColumnName("avatar")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(20)
@@ -180,6 +184,11 @@ namespace HW.Entities
 
                 entity.Property(e => e.Phone)
                     .HasColumnName("phone")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pwd)
+                    .HasColumnName("pwd")
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
@@ -261,6 +270,10 @@ namespace HW.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Avatar)
+                    .HasColumnName("avatar")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Email)
                     .HasColumnName("email")
                     .HasMaxLength(20)
@@ -273,6 +286,11 @@ namespace HW.Entities
 
                 entity.Property(e => e.Phone)
                     .HasColumnName("phone")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pwd)
+                    .HasColumnName("pwd")
                     .HasMaxLength(20)
                     .IsUnicode(false);
 

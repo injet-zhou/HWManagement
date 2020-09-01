@@ -17,6 +17,8 @@ namespace HW.Entities
         public string Sclass { get; set; }
         public string Phone { get; set; }
         public string School { get; set; }
+        public string Avatar { get; set; }
+        public string Pwd { get; set; }
 
         public virtual ICollection<Enrollment> Enrollment { get; set; }
         public virtual ICollection<Submission> Submission { get; set; }
