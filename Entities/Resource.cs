@@ -14,6 +14,7 @@ namespace HW.Entities
         public string Name { get; set; }
         public string Url { get; set; }
         public string Type { get; set; }
+        public int? Size { get; set; }
 
         public virtual ICollection<Submission> Submission { get; set; }
     }

@@ -7,7 +7,7 @@ namespace HW.Entities
     {
         public Teacher()
         {
-            Enrollment = new HashSet<Enrollment>();
+            Course = new HashSet<Course>();
         }
 
         public string OpenId { get; set; }
@@ -19,6 +19,6 @@ namespace HW.Entities
         public string Avatar { get; set; }
         public string Pwd { get; set; }
 
-        public virtual ICollection<Enrollment> Enrollment { get; set; }
+        public virtual ICollection<Course> Course { get; set; }
     }
 }

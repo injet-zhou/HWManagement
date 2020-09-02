@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HW.Entities;
+using HW.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,10 +28,11 @@ namespace HW
         {
             services.AddControllers();
             services.AddTransient<homeworkContext>();
+            services.AddScoped<IGlobalService, GlobalService>();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
                 {
-                    Title = "Course",
+                    Title = "HomeworkManagement",
                     Version = "v1"
                 });
             });
@@ -50,8 +52,9 @@ namespace HW
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Course");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeworkManagement");
             });
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -7,12 +7,10 @@ namespace HW.Entities
     {
         public string EnrollmentId { get; set; }
         public string OpenId { get; set; }
-        public string TeaOpenId { get; set; }
         public string CourseId { get; set; }
         public int? Score { get; set; }
 
         public virtual Course Course { get; set; }
         public virtual Student Open { get; set; }
-        public virtual Teacher TeaOpen { get; set; }
     }
 }

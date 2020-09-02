@@ -51,6 +51,16 @@ namespace HW.Entities
                     .HasColumnName("name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.OpenId)
+                    .HasColumnName("openId")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Open)
+                    .WithMany(p => p.Course)
+                    .HasForeignKey(d => d.OpenId)
+                    .HasConstraintName("FK_COURSE_REFERENCE_TEACHER");
             });
 
             modelBuilder.Entity<Enrollment>(entity =>
@@ -74,11 +84,6 @@ namespace HW.Entities
 
                 entity.Property(e => e.Score).HasColumnName("score");
 
-                entity.Property(e => e.TeaOpenId)
-                    .HasColumnName("tea_openId")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.Enrollment)
                     .HasForeignKey(d => d.CourseId)
@@ -88,11 +93,6 @@ namespace HW.Entities
                     .WithMany(p => p.Enrollment)
                     .HasForeignKey(d => d.OpenId)
                     .HasConstraintName("FK_ENROLLME_REFERENCE_STUDENT");
-
-                entity.HasOne(d => d.TeaOpen)
-                    .WithMany(p => p.Enrollment)
-                    .HasForeignKey(d => d.TeaOpenId)
-                    .HasConstraintName("FK_ENROLLME_REFERENCE_TEACHER");
             });
 
             modelBuilder.Entity<Homework>(entity =>
@@ -150,6 +150,8 @@ namespace HW.Entities
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Size).HasColumnName("size");
+
                 entity.Property(e => e.Type)
                     .HasColumnName("type")
                     .HasMaxLength(20)
@@ -175,6 +177,7 @@ namespace HW.Entities
 
                 entity.Property(e => e.Avatar)
                     .HasColumnName("avatar")
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -221,6 +224,11 @@ namespace HW.Entities
                     .HasColumnName("content")
                     .HasColumnType("text");
 
+                entity.Property(e => e.CourseId)
+                    .HasColumnName("courseId")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.HomeworkId)
                     .HasColumnName("homeworkId")
                     .HasMaxLength(50)
@@ -241,6 +249,11 @@ namespace HW.Entities
                 entity.Property(e => e.SubTime)
                     .HasColumnName("sub_time")
                     .HasColumnType("datetime");
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.Submission)
+                    .HasForeignKey(d => d.CourseId)
+                    .HasConstraintName("FK_SUBMISSI_REFERENCE_COURSE");
 
                 entity.HasOne(d => d.Homework)
                     .WithMany(p => p.Submission)
@@ -272,6 +285,7 @@ namespace HW.Entities
 
                 entity.Property(e => e.Avatar)
                     .HasColumnName("avatar")
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Email)
